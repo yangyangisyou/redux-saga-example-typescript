@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './store';
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    __INITIAL_STATE__: Object;
+    __REDUX_DEVTOOLS_EXTENSION__: Function;
+    devToolsExtension: Function;
+  }
+}
+
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
